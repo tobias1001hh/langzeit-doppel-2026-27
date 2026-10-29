@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCV Langzeit-Doppel 2026/27</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Vereinsinternes Langzeit-Doppelturnier des TC Vahrendorf, Winter 2026/27">
+<link rel="icon" href="assets/logo-rund.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap">
+<style>
+  :root {
+    --bg: #FFFFFF; --surface: #F2F3F5; --surface2: #E9EBEF; --ink: #3D3D3D;
+    --navy: #1F3055; --navy-ink: #FFFFFF; --red: #CD1917; --yellow: #DCE43F; --yellow-soft: #F5F8CE;
+    --muted: #6B7280; --line: #D9DCE3; --heading: #1F3055;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #101B33; --surface: #1B2946; --surface2: #16223D; --ink: #DDE0E6;
+      --navy: #24365E; --navy-ink: #FFFFFF; --red: #F05B52; --yellow: #DCE43F; --yellow-soft: #3A3F14;
+      --muted: #9AA3B8; --line: #2C3A5E; --heading: #FFFFFF;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #101B33; --surface: #1B2946; --surface2: #16223D; --ink: #DDE0E6;
+    --navy: #24365E; --navy-ink: #FFFFFF; --red: #F05B52; --yellow: #DCE43F; --yellow-soft: #3A3F14;
+    --muted: #9AA3B8; --line: #2C3A5E; --heading: #FFFFFF;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body {
+    background: var(--bg); color: var(--ink); margin: 0;
+    font-family: "Montserrat", "Segoe UI", system-ui, sans-serif;
+    font-size: 16px; line-height: 1.6; padding: 0 16px 48px;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1, h2, h3 { color: var(--heading); margin: 0; text-wrap: balance; font-weight: 700; }
+  a { color: var(--red); }
+  .eyebrow { font-weight: 600; font-size: 0.78rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--heading); }
+
+  /* ---------- Kopf ---------- */
+  header.hero { text-align: center; padding-top: 32px; position: relative; }
+  .hero img.logo { width: 112px; height: 112px; }
+  .hero .hairline { border: 0; border-top: 1.5px solid var(--heading); margin: 20px auto; max-width: 680px; }
+  .hero h1 { font-size: clamp(2.1rem, 7vw, 3.4rem); font-weight: 800; line-height: 1.06; margin-top: 8px; }
+  .hero .sub { color: var(--red); font-weight: 700; font-size: clamp(1rem, 3vw, 1.25rem); margin-top: 8px; }
+  .band { background: var(--navy); color: var(--navy-ink); font-weight: 700; font-size: 0.98rem; padding: 12px 18px; margin-top: 24px; }
+  .band span { white-space: nowrap; }
+  .kreis {
+    position: absolute; right: -8px; top: 150px;
+    width: 150px; height: 150px; border-radius: 50%;
+    background: var(--yellow); color: #1F3055; transform: rotate(8deg);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+    text-decoration: none; text-align: center; padding: 14px; font-weight: 700; line-height: 1.25; font-size: 0.82rem;
+  }
+  .kreis .gross { font-weight: 800; font-size: 1.05rem; text-transform: uppercase; }
+  .kreis:hover, .kreis:focus-visible { transform: rotate(4deg) scale(1.04); }
+  @media (max-width: 900px) { .kreis { position: static; transform: rotate(-6deg); margin: 20px auto 0; } .kreis:hover { transform: rotate(-3deg) scale(1.03); } }
+
+  /* ---------- Sektionen ---------- */
+  section { margin-top: 44px; }
+  section > h2 { font-size: 1.3rem; padding-bottom: 7px; border-bottom: 1.5px solid var(--heading); margin-bottom: 18px; }
+  #news { margin-top: 28px; background: var(--red); color: #fff; padding: 13px 18px; text-align: center; font-weight: 700; }
+  .hinweis { color: var(--muted); font-size: 0.92rem; }
+  [hidden] { display: none !important; }
+
+  .eckdaten { display: grid; grid-template-columns: 170px 1fr; border: 1px solid var(--line); }
+  .eckdaten .k { background: var(--navy); color: var(--navy-ink); font-weight: 700; font-size: 0.9rem; padding: 11px 14px; border-bottom: 2px solid var(--bg); }
+  .eckdaten .v { background: var(--surface); padding: 11px 14px; border-bottom: 2px solid var(--bg); overflow-wrap: anywhere; }
+  @media (max-width: 560px) { .eckdaten { grid-template-columns: 1fr; } .eckdaten .k { border-bottom: 0; padding-bottom: 6px; } }
+
+  /* So funktioniert's */
+  .schritte { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; counter-reset: s; }
+  .schritt { background: var(--surface); padding: 16px 16px 14px; border-top: 4px solid var(--navy); }
+  .schritt::before { counter-increment: s; content: counter(s); display: block; font-weight: 800; font-size: 1.6rem; color: var(--red); line-height: 1; margin-bottom: 6px; }
+  .schritt h3 { font-size: 1rem; margin-bottom: 4px; }
+  .schritt p { margin: 0; font-size: 0.92rem; }
+  @media (max-width: 760px) { .schritte { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 440px) { .schritte { grid-template-columns: 1fr; } }
+
+  /* Anmeldung */
+  .anmeldung { border: 2px solid var(--red); padding: 22px 22px 18px; }
+  .anmeldung .frist { color: var(--red); font-weight: 800; font-size: 1.2rem; }
+  .anmeldung .countdown { display: inline-block; background: var(--yellow); color: #1F3055; font-weight: 800; padding: 3px 10px; margin-left: 6px; font-size: 0.9rem; transform: rotate(-2deg); }
+  .anmeldung ul { margin: 10px 0 14px; padding-left: 20px; }
+  .btn {
+    display: inline-block; background: var(--navy); color: var(--navy-ink); text-decoration: none;
+    font-weight: 700; padding: 12px 20px; border: 0; cursor: pointer; font: inherit; font-weight: 700;
+  }
+  .btn:hover, .btn:focus-visible { background: var(--red); color: #fff; }
+  .btn.zweit { background: transparent; color: var(--heading); border: 1.5px solid var(--heading); }
+  .btn.zweit:hover, .btn.zweit:focus-visible { background: var(--heading); color: var(--bg); }
+  .aktionen { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 6px; }
+  .mailadr { font-weight: 700; color: var(--heading); overflow-wrap: anywhere; }
+  .kopiert { color: var(--muted); font-size: 0.85rem; }
+  .klein { font-size: 0.85rem; color: var(--muted); margin: 14px 0 0; }
+
+  /* Tabellen */
+  table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 8px 11px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: 0.95rem; }
+  thead th { background: var(--navy); color: var(--navy-ink); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.04em; text-transform: uppercase; border-bottom: 0; }
+  tbody tr:nth-child(even) td { background: var(--surface); }
+  .tabelle-scroll { overflow-x: auto; }
+  .zeitplan td:first-child { white-space: nowrap; font-weight: 700; color: var(--heading); }
+  tr.jetzt td { background: var(--yellow-soft) !important; }
+  td.num, th.num { text-align: right; }
+  tr.spitze td { background: var(--yellow-soft) !important; font-weight: 700; }
+
+  ul.regeln { margin: 0; padding-left: 20px; display: grid; gap: 7px; }
+  .fairplay { background: var(--yellow-soft); color: var(--heading); padding: 14px 16px; margin-bottom: 16px; font-weight: 600; }
+
+  /* Spielplan (Phase Spielbetrieb) */
+  .spieltag h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; margin: 22px 0 8px; }
+  .spieltag h3 .zr { color: var(--muted); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 0.9rem; margin-left: 8px; }
+  .badge { display: inline-block; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 8px; white-space: nowrap; }
+  .badge.offen { background: var(--surface2); color: var(--muted); }
+  .badge.termin { background: var(--yellow); color: #1F3055; }
+  .badge.fertig { background: var(--navy); color: var(--navy-ink); }
+  .heim { font-weight: 700; color: var(--heading); }
+
+  footer {
+    margin-top: 52px; padding-top: 16px; border-top: 1.5px solid var(--heading);
+    font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: space-between;
+  }
+  footer .verein { font-weight: 700; color: var(--heading); }
+  footer a { font-weight: 700; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="logo" src="assets/logo-rund.png" alt="TC Vahrendorf e.V.">
+    <hr class="hairline">
+    <div class="eyebrow">TC Vahrendorf e.V. · vereinsintern</div>
+    <h1>Langzeit-Doppel</h1>
+    <div class="sub">Winter 2026/27 · offen für Herren, Damen &amp; Mixed</div>
+    <a class="kreis" id="kreis" href="#sec-anmeldung"><span>Jetzt</span><span class="gross">anmelden</span><span id="kreisFrist">bis 08.11.</span></a>
+    <div class="band" id="band"><span>Anmeldung bis So. 08.11.2026</span> &nbsp;|&nbsp; <span>Spielbetrieb Mitte Nov. bis 31.03.2027</span></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="news" hidden></div>
+
+  <!-- ================= PHASE ANMELDUNG ================= -->
+  <section id="sec-kurz">
+    <h2>Das Turnier in Kürze</h2>
+    <div class="eckdaten">
+      <div class="k">Wer</div><div class="v">Alle TCV-Mitglieder als festes Doppel, in einer <strong>offenen Klasse</strong>: Herren-, Damen- und Mixed-Doppel spielen gemeinsam. Ersatzspieler aus dem Verein sind erlaubt.</div>
+      <div class="k">Wann</div><div class="v">Mitte November 2026 bis 31. März 2027, in Spieltagen mit festen Zeiträumen</div>
+      <div class="k">Umfang</div><div class="v">Rund <strong>8 Begegnungen pro Team</strong> (6–10). Den Modus legen wir nach Anmeldeschluss passend zur Teamzahl fest.</div>
+      <div class="k">Spielzeit</div><div class="v">2 Stunden pro Begegnung, die voll ausgespielt werden. Gewertet wird der Stand bei Zeitablauf.</div>
+      <div class="k">Heim &amp; Gast</div><div class="v">Das Heimteam bucht eine Halle seiner Wahl, stellt die Bälle und zahlt beides. Jedes Team hat gleich oft Heim- und Gastrecht.</div>
+      <div class="k">Turnierleitung</div><div class="v">Tobias Tiedgen · <a href="mailto:turnierleitung@tcvahrendorf.de">turnierleitung@tcvahrendorf.de</a></div>
+    </div>
+  </section>
+
+  <section id="sec-ablauf">
+    <h2>So funktioniert's</h2>
+    <div class="schritte">
+      <div class="schritt"><h3>Anmelden</h3><p>Eine Mail pro Team bis 08.11., mit Namen und Kontaktdaten von euch beiden.</p></div>
+      <div class="schritt"><h3>Spielplan</h3><p>Nach Anmeldeschluss bekommt ihr alle Begegnungen mit Spieltagen und den Kontakten eurer Gegner.</p></div>
+      <div class="schritt"><h3>Termin ausmachen</h3><p>Das Heimteam schlägt 2 Termine vor, bucht die Halle und meldet den Termin.</p></div>
+      <div class="schritt"><h3>Spielen &amp; melden</h3><p>2 Stunden Tennis. Das Siegerteam meldet das Ergebnis, das dann hier erscheint.</p></div>
+    </div>
+  </section>
+
+  <section id="sec-anmeldung">
+    <h2>Anmeldung</h2>
+    <div class="anmeldung" id="anmeldeBox">
+      <div><span class="frist">Bis Sonntag, 08.11.2026</span><span class="countdown" id="countdown" hidden></span></div>
+      <p style="margin:10px 0 0">Schickt eine Mail an <span class="mailadr">turnierleitung@tcvahrendorf.de</span>, eine pro Team mit:</p>
+      <ul>
+        <li>Vor- und Nachname von euch beiden</li>
+        <li>E-Mail-Adresse und Handynummer von euch beiden</li>
+        <li>optional: Ersatzspieler (TCV-Mitglieder)</li>
+      </ul>
+      <div class="aktionen">
+        <a class="btn" id="mailBtn" href="mailto:turnierleitung@tcvahrendorf.de">✉ Anmeldemail öffnen</a>
+        <button class="btn zweit" id="copyBtn" type="button">Adresse kopieren</button>
+        <span class="kopiert" id="copyInfo" aria-live="polite"></span>
+      </div>
+      <p class="klein">Noch ohne Partner oder Partnerin? Meldet euch trotzdem, vielleicht finden wir jemanden.<br>
+      Mit der Anmeldung seid ihr einverstanden, dass eure Kontaktdaten zur Terminabsprache an eure Gegner gehen und dass eure Namen, Termine und Ergebnisse hier erscheinen. Kontaktdaten veröffentlichen wir nicht.</p>
+      <p class="klein" id="teamZahl" hidden></p>
+    </div>
+    <div class="anmeldung" id="anmeldeZu" hidden>
+      <span class="frist">Die Anmeldung ist geschlossen.</span>
+      <p style="margin:8px 0 0">Danke für eure Meldungen! Spielplan und Gegner kommen in den nächsten Tagen per Mail und erscheinen dann hier.</p>
+    </div>
+  </section>
+
+  <!-- ================= PHASE SPIELBETRIEB ================= -->
+  <section id="sec-tabelle" hidden>
+    <h2>Tabelle</h2>
+    <div class="tabelle-scroll"><table id="tabelle"></table></div>
+    <p class="hinweis">Reihenfolge: Siege · bei Gleichstand ausgespielte Siege vor Siegen nach Zeitwertung · Spieldifferenz.</p>
+  </section>
+
+  <section id="sec-spielplan" hidden>
+    <h2>Spielplan</h2>
+    <div id="spielplan"></div>
+  </section>
+
+  <!-- ================= IMMER ================= -->
+  <section id="sec-zeitplan">
+    <h2>Zeitplan</h2>
+    <div class="tabelle-scroll">
+      <table class="zeitplan">
+        <thead><tr><th>Datum</th><th>Was</th></tr></thead>
+        <tbody id="zeitplanBody">
+          <tr data-bis="2026-11-08"><td>bis So. 08.11.2026</td><td>Anmeldung per Mail</td></tr>
+          <tr data-bis="2026-11-15"><td>bis ca. 12.11.2026</td><td>Modus, Spielplan und Gegner-Kontakte per Mail</td></tr>
+          <tr data-bis="2027-03-31"><td>ab Mo. 16.11.2026</td><td>Spielbetrieb in Spieltagen</td></tr>
+          <tr data-bis="2027-03-31"><td>Mi. 31.03.2027</td><td>letzter Spieltag, Ende der Hallensaison</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="sec-regeln">
+    <h2>Spielregeln</h2>
+    <div class="fairplay">Fair Play first: Termine und Regelfragen klärt ihr sportlich untereinander. Die Turnierleitung springt nur im Notfall als Schiedsstelle ein.</div>
+    <ul class="regeln">
+      <li>Spielzeit 2 Stunden, max. 10 Minuten Einspielen. Bitte zügig spielen, Seitenwechsel max. 90 Sekunden.</li>
+      <li>Bei Zeitablauf gewinnt, wer mehr Sätze hat, dann wer mehr Spiele hat (inkl. angefangenem Satz), sonst entscheidet ein letzter Punkt. Es wird nicht nachgespielt.</li>
+      <li>Das Heimteam schlägt spätestens 5 Tage vor Beginn des Spieltags mindestens 2 Termine vor, das Gastteam antwortet binnen 3 Tagen.</li>
+      <li>Absagen spätestens einen Tag vorher. Bei kurzfristigerer Absage erstattet der Gast die Hallenkosten.</li>
+      <li>Ersatzspieler: TCV-Mitglied und nicht wesentlich stärker als der vertretene Partner.</li>
+      <li>Termine und Ergebnisse meldet ihr per Mail oder in die Turnier-WhatsApp-Gruppe (wird nach Anmeldeschluss bekanntgegeben).</li>
+    </ul>
+    <div class="aktionen" style="margin-top:16px">
+      <a class="btn zweit" href="ausschreibung.pdf" target="_blank" rel="noopener">📄 Ausschreibung &amp; vollständige Spielregeln (PDF)</a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="verein">TC Vahrendorf e.V.</span>
+    <span><a href="https://tcvahrendorf.de">tcvahrendorf.de</a> · <a href="mailto:turnierleitung@tcvahrendorf.de">turnierleitung@tcvahrendorf.de</a></span>
+    <span>Angezeigt werden nur Namen, Termine und Ergebnisse.</span>
+    <span id="stand"></span>
+  </footer>
+</div>
+
+<!-- TURNIERDATEN:START -->
+<script>
+// TURNIERDATEN — Langzeit-Doppelturnier Winter 2026/27 (TC Vahrendorf e.V.)
+// Einzige Datenquelle der Turnierseite. Nach jeder Änderung: "stand" hochsetzen → sync-daten.ps1 → deploy-github.ps1
+// DATENSCHUTZ: nur Teamnamen, Spielernamen, Termine (Datum/Uhrzeit/Halle) und Ergebnisse. NIE Kontaktdaten, LKs, Vermerke.
+// Quelle nur "03 Spielbetrieb\*".
+window.TURNIERDATEN = {
+  stand: "2026-10-29 12:00",
+
+  // "anmeldung" | "auslosung" (Anmeldeschluss vorbei, Spielplan in Arbeit) | "spielbetrieb" | "beendet"
+  phase: "anmeldung",
+
+  anmeldeschluss: "2026-11-08",      // letzter Tag der Anmeldung (inklusive)
+  spielbeginn: "2026-11-16",
+  spielende: "2027-03-31",
+
+  // Roter Hinweisbalken oben (leer = ausgeblendet)
+  news: "",
+
+  // Anzahl angemeldeter Teams (0 = nicht anzeigen). Nur die Zahl, keine Namen vor dem Spielplan.
+  teamsAngemeldet: 0,
+
+  // --- ab Phase "spielbetrieb" (noch leer) ---
+  // teams:       [{ nr: 1, name: "Muster/Beispiel" }]
+  // spieltage:   [{ nr: 1, von: "2026-11-16", bis: "2026-11-29" }]
+  // begegnungen: [{ spieltag: 1, heim: 1, gast: 2, termin: "2026-11-20 19:00", halle: "Tennishalle X",
+  //                 ergebnis: "6:4 3:6 5:3", sieger: 1, zeitwertung: true }]
+  teams: [],
+  spieltage: [],
+  begegnungen: []
+};
+</script>
+<!-- TURNIERDATEN:END -->
+
+<script>
+(function () {
+  var D = window.TURNIERDATEN || {};
+  var $ = function (id) { return document.getElementById(id); };
+  var MAIL = "turnierleitung@tcvahrendorf.de";
+
+  function datum(iso) { var p = iso.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function heute() { var d = new Date(); return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+  function fmt(iso) {
+    var d = datum(iso.slice(0, 10));
+    var wt = ["So.", "Mo.", "Di.", "Mi.", "Do.", "Fr.", "Sa."][d.getDay()];
+    var s = wt + " " + ("0" + d.getDate()).slice(-2) + "." + ("0" + (d.getMonth() + 1)).slice(-2) + ".";
+    if (iso.length > 10) s += " " + iso.slice(11, 16) + " Uhr";
+    return s;
+  }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  // News + Stand
+  if (D.news) { $("news").textContent = D.news; $("news").hidden = false; }
+  if (D.stand) $("stand").textContent = "Stand: " + D.stand.replace(/^(\d{4})-(\d{2})-(\d{2})/, "$3.$2.$1");
+
+  // Phase bestimmen: Anmeldung schließt automatisch nach dem Anmeldeschluss
+  var phase = D.phase || "anmeldung";
+  var schluss = D.anmeldeschluss ? datum(D.anmeldeschluss) : null;
+  if (phase === "anmeldung" && schluss && heute() > schluss) phase = "auslosung";
+  var anmeldungOffen = phase === "anmeldung";
+
+  // Anmeldebereich
+  $("anmeldeBox").hidden = !anmeldungOffen;
+  $("anmeldeZu").hidden = phase !== "auslosung";
+  if (phase === "spielbetrieb" || phase === "beendet") { $("sec-anmeldung").hidden = true; $("sec-ablauf").hidden = true; }
+  $("kreis").hidden = !anmeldungOffen;
+
+  if (anmeldungOffen && schluss) {
+    var tage = Math.round((schluss - heute()) / 86400000);
+    var cd = $("countdown");
+    cd.textContent = tage === 0 ? "heute letzter Tag!" : tage === 1 ? "noch 1 Tag" : "noch " + tage + " Tage";
+    cd.hidden = false;
+  }
+  if (anmeldungOffen && D.teamsAngemeldet > 0) {
+    $("teamZahl").textContent = "Bisher angemeldet: " + D.teamsAngemeldet + (D.teamsAngemeldet === 1 ? " Team" : " Teams");
+    $("teamZahl").hidden = false;
+  }
+
+  // Mail-Vorlage
+  var betreff = "Anmeldung Langzeit-Doppel Winter 2026/27";
+  var text = "Hallo Turnierleitung,\n\nwir melden uns als Team für das Langzeit-Doppel Winter 2026/27 an:\n\n" +
+    "Spieler/in 1: Vorname Nachname\nE-Mail:\nHandy:\n\n" +
+    "Spieler/in 2: Vorname Nachname\nE-Mail:\nHandy:\n\n" +
+    "Ersatzspieler (optional):\n\nViele Grüße\n";
+  $("mailBtn").href = "mailto:" + MAIL + "?subject=" + encodeURIComponent(betreff) + "&body=" + encodeURIComponent(text);
+  $("copyBtn").addEventListener("click", function () {
+    var ok = function () { $("copyInfo").textContent = "Kopiert!"; setTimeout(function () { $("copyInfo").textContent = ""; }, 2500); };
+    if (navigator.clipboard) navigator.clipboard.writeText(MAIL).then(ok, function () { $("copyInfo").textContent = MAIL; });
+    else $("copyInfo").textContent = MAIL;
+  });
+
+  // Zeitplan: aktuellen Abschnitt markieren
+  var rows = document.querySelectorAll("#zeitplanBody tr");
+  for (var i = 0; i < rows.length; i++) {
+    if (heute() <= datum(rows[i].getAttribute("data-bis"))) { rows[i].className = "jetzt"; break; }
+  }
+
+  // ---------- Phase Spielbetrieb: Tabelle + Spielplan ----------
+  if ((phase === "spielbetrieb" || phase === "beendet") && (D.teams || []).length) {
+    var teamName = {}; D.teams.forEach(function (t) { teamName[t.nr] = t.name; });
+    var st = {};
+    D.teams.forEach(function (t) { st[t.nr] = { nr: t.nr, sp: 0, s: 0, n: 0, sv: 0, gp: 0, gm: 0 }; });
+    (D.begegnungen || []).forEach(function (b) {
+      if (!b.ergebnis || !b.sieger) return;
+      var h = 0, g = 0;
+      b.ergebnis.trim().split(/\s+/).forEach(function (satz) { var p = satz.split(":"); h += +p[0] || 0; g += +p[1] || 0; });
+      var H = st[b.heim], G = st[b.gast]; if (!H || !G) return;
+      H.sp++; G.sp++; H.gp += h; H.gm += g; G.gp += g; G.gm += h;
+      var W = b.sieger === b.heim ? H : G, L = b.sieger === b.heim ? G : H;
+      W.s++; L.n++; if (!b.zeitwertung) W.sv++;
+    });
+    var liste = Object.keys(st).map(function (k) { return st[k]; }).sort(function (a, b) {
+      return b.s - a.s || b.sv - a.sv || (b.gp - b.gm) - (a.gp - a.gm) || a.nr - b.nr;
+    });
+    var html = "<thead><tr><th>#</th><th>Team</th><th class='num'>Sp.</th><th class='num'>S</th><th class='num'>N</th><th class='num'>Spiele</th><th class='num'>Diff.</th></tr></thead><tbody>";
+    liste.forEach(function (r, i) {
+      var diff = r.gp - r.gm;
+      html += "<tr" + (i === 0 && r.sp ? " class='spitze'" : "") + "><td>" + (i + 1) + "</td><td>" + esc(teamName[r.nr]) + "</td><td class='num'>" + r.sp + "</td><td class='num'>" + r.s +
+        "</td><td class='num'>" + r.n + "</td><td class='num'>" + r.gp + ":" + r.gm + "</td><td class='num'>" + (diff > 0 ? "+" : "") + diff + "</td></tr>";
+    });
+    $("tabelle").innerHTML = html + "</tbody>";
+    $("sec-tabelle").hidden = false;
+
+    var sp = "";
+    (D.spieltage || []).forEach(function (t) {
+      sp += "<div class='spieltag'><h3>" + t.nr + ". Spieltag<span class='zr'>" + fmt(t.von) + " – " + fmt(t.bis) + "</span></h3><div class='tabelle-scroll'><table><thead><tr><th>Heim</th><th>Gast</th><th>Termin / Halle</th><th>Ergebnis</th></tr></thead><tbody>";
+      (D.begegnungen || []).filter(function (b) { return b.spieltag === t.nr; }).forEach(function (b) {
+        var status = b.ergebnis ? "<span class='badge fertig'>gespielt</span>" : b.termin ? "<span class='badge termin'>Termin steht</span>" : "<span class='badge offen'>offen</span>";
+        var ort = b.termin ? fmt(b.termin) + (b.halle ? "<br><span class='hinweis'>" + esc(b.halle) + "</span>" : "") : status;
+        var erg = b.ergebnis ? esc(b.ergebnis) + (b.zeitwertung ? " <span class='hinweis'>(Zeit)</span>" : "") : (b.termin ? status : "");
+        sp += "<tr><td class='heim'>" + esc(teamName[b.heim]) + "</td><td>" + esc(teamName[b.gast]) + "</td><td>" + ort + "</td><td>" + erg + "</td></tr>";
+      });
+      sp += "</tbody></table></div></div>";
+    });
+    $("spielplan").innerHTML = sp;
+    $("sec-spielplan").hidden = !sp;
+
+    // Im Spielbetrieb: aktueller Stand ins Band, Eckdaten nach unten (vor den Zeitplan)
+    var alle = (D.begegnungen || []).length, gesp = (D.begegnungen || []).filter(function (b) { return b.ergebnis; }).length;
+    $("band").innerHTML = phase === "beendet"
+      ? "<span>Saison beendet</span> &nbsp;|&nbsp; <span>" + gesp + " Begegnungen gespielt</span>"
+      : "<span>Spielbetrieb bis 31.03.2027</span> &nbsp;|&nbsp; <span>" + gesp + " von " + alle + " Begegnungen gespielt</span>";
+    $("sec-zeitplan").parentNode.insertBefore($("sec-kurz"), $("sec-zeitplan"));
+  }
+})();
+</script>
+</body>
+</html>
