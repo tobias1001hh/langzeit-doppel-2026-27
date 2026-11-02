@@ -252,7 +252,7 @@
 // DATENSCHUTZ: nur Teamnamen, Spielernamen, Termine (Datum/Uhrzeit/Halle) und Ergebnisse. NIE Kontaktdaten, LKs, Vermerke.
 // Quelle nur "03 Spielbetrieb\*".
 window.TURNIERDATEN = {
-  stand: "2026-11-02 19:00",
+  stand: "2026-11-02 19:15",
 
   // "anmeldung" | "auslosung" (Anmeldeschluss vorbei, Spielplan in Arbeit) | "spielbetrieb" | "beendet"
   phase: "anmeldung",
@@ -266,6 +266,9 @@ window.TURNIERDATEN = {
 
   // Anzahl angemeldeter Teams, nur falls "teams" leer ist (0 = nicht anzeigen). Sonst zählt "teams".
   teamsAngemeldet: 0,
+
+  // Stand der Anmeldungen (bei jeder neuen Anmeldung hochsetzen; leer = "stand" verwenden)
+  anmeldestand: "2026-11-02",
 
   // Teams (Quelle: 03 Spielbetrieb\Tabelle.md). Schon in der Anmeldephase sichtbar als vorläufige Tabelle.
   // teams:       [{ nr: 1, name: "Muster / Beispiel", spieler: "Max Muster, Erika Beispiel" }]
@@ -326,8 +329,9 @@ window.TURNIERDATEN = {
     cd.hidden = false;
   }
   var anzahl = (D.teams || []).length || D.teamsAngemeldet || 0;
+  var anmStand = (D.anmeldestand || D.stand || "").slice(0, 10).replace(/^(\d{4})-(\d{2})-(\d{2})$/, "$3.$2.$1");
   if (anmeldungOffen && anzahl > 0) {
-    $("teamZahl").innerHTML = "Bisher angemeldet: " + anzahl + (anzahl === 1 ? " Team" : " Teams") + " · <a href='#sec-tabelle'>wer ist dabei?</a>";
+    $("teamZahl").innerHTML = "Bisher angemeldet" + (anmStand ? " (Stand " + anmStand + ")" : "") + ": " + anzahl + (anzahl === 1 ? " Team" : " Teams") + " · <a href='#sec-tabelle'>wer ist dabei?</a>";
     $("teamZahl").hidden = false;
   }
 
@@ -379,7 +383,7 @@ window.TURNIERDATEN = {
     $("tabelle").innerHTML = html + "</tbody>";
     $("sec-tabelle").hidden = false;
     if (!spielbetrieb) {
-      $("tabelleTitel").textContent = "Angemeldete Teams";
+      $("tabelleTitel").textContent = "Angemeldete Teams" + (anmStand ? " (Stand " + anmStand + ")" : "");
       $("tabelleHinweis").textContent = "Vorläufige Tabelle, alphabetisch sortiert. Den Modus legen wir nach Anmeldeschluss passend zur Teamzahl fest.";
     }
   }
