@@ -252,7 +252,7 @@
 // DATENSCHUTZ: nur Teamnamen, Spielernamen, Termine (Datum/Uhrzeit/Halle) und Ergebnisse. NIE Kontaktdaten, LKs, Vermerke.
 // Quelle nur "03 Spielbetrieb\*".
 window.TURNIERDATEN = {
-  stand: "2026-11-02 18:30",
+  stand: "2026-11-02 19:00",
 
   // "anmeldung" | "auslosung" (Anmeldeschluss vorbei, Spielplan in Arbeit) | "spielbetrieb" | "beendet"
   phase: "anmeldung",
@@ -367,20 +367,20 @@ window.TURNIERDATEN = {
       W.s++; L.n++; if (!b.zeitwertung) W.sv++;
     });
     var liste = Object.keys(st).map(function (k) { return st[k]; }).sort(function (a, b) {
-      return b.s - a.s || b.sv - a.sv || (b.gp - b.gm) - (a.gp - a.gm) || a.nr - b.nr;
+      return b.s - a.s || b.sv - a.sv || (b.gp - b.gm) - (a.gp - a.gm) || String(teamName[a.nr]).localeCompare(String(teamName[b.nr]), "de");
     });
     var html = "<thead><tr><th>#</th><th>Team</th><th class='num'>Sp.</th><th class='num'>S</th><th class='num'>N</th><th class='num'>Spiele</th><th class='num'>Diff.</th></tr></thead><tbody>";
     liste.forEach(function (r, i) {
       var diff = r.gp - r.gm;
       var spieler = teamSpieler[r.nr] ? "<br><span class='hinweis'>" + esc(teamSpieler[r.nr]) + "</span>" : "";
-      html += "<tr" + (i === 0 && r.sp ? " class='spitze'" : "") + "><td>" + (i + 1) + "</td><td>" + esc(teamName[r.nr]) + spieler + "</td><td class='num'>" + r.sp + "</td><td class='num'>" + r.s +
+      html += "<tr" + (i === 0 && r.sp ? " class='spitze'" : "") + "><td>" + (spielbetrieb ? i + 1 : "") + "</td><td>" + esc(teamName[r.nr]) + spieler + "</td><td class='num'>" + r.sp + "</td><td class='num'>" + r.s +
         "</td><td class='num'>" + r.n + "</td><td class='num'>" + r.gp + ":" + r.gm + "</td><td class='num'>" + (diff > 0 ? "+" : "") + diff + "</td></tr>";
     });
     $("tabelle").innerHTML = html + "</tbody>";
     $("sec-tabelle").hidden = false;
     if (!spielbetrieb) {
       $("tabelleTitel").textContent = "Angemeldete Teams";
-      $("tabelleHinweis").textContent = "Vorläufige Tabelle in der Reihenfolge der Anmeldung. Den Modus legen wir nach Anmeldeschluss passend zur Teamzahl fest.";
+      $("tabelleHinweis").textContent = "Vorläufige Tabelle, alphabetisch sortiert. Den Modus legen wir nach Anmeldeschluss passend zur Teamzahl fest.";
     }
   }
 
