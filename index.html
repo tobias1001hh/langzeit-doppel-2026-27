@@ -148,7 +148,7 @@
   <section id="sec-kurz">
     <h2>Das Turnier in Kürze</h2>
     <div class="eckdaten">
-      <div class="k">Wer</div><div class="v">Feste Doppel, in denen <strong>mindestens einer von euch TCV-Mitglied</strong> ist. Euer Partner oder eure Partnerin muss kein Mitglied sein <span class="hinweis">(geändert am 02.11.)</span>. Alle spielen in einer <strong>offenen Klasse</strong>: Herren-, Damen- und Mixed-Doppel spielen gemeinsam. Ersatzspieler aus dem Verein sind erlaubt.</div>
+      <div class="k">Wer</div><div class="v">Feste Doppel. Wichtig ist nur: <strong>In jedem Spiel steht pro Team mindestens ein TCV-Mitglied auf dem Platz</strong> <span class="hinweis">(geändert am 02.11.)</span>. Partner, Partnerin und Ersatzspieler dürfen also auch von außerhalb kommen. Alle spielen in einer <strong>offenen Klasse</strong>: Herren-, Damen- und Mixed-Doppel spielen gemeinsam.</div>
       <div class="k">Wann</div><div class="v">Mitte November 2026 bis 31. März 2027, in Spieltagen mit festen Zeiträumen</div>
       <div class="k">Umfang</div><div class="v">Rund <strong>8 Begegnungen pro Team</strong> (6–10). Den Modus legen wir nach Anmeldeschluss passend zur Teamzahl fest.</div>
       <div class="k">Spielzeit</div><div class="v">2 Stunden pro Begegnung, die voll ausgespielt werden. Gewertet wird der Stand bei Zeitablauf.</div>
@@ -175,7 +175,7 @@
       <ul>
         <li>Vor- und Nachname von euch beiden</li>
         <li>E-Mail-Adresse und Handynummer von euch beiden</li>
-        <li>optional: Ersatzspieler (TCV-Mitglieder)</li>
+        <li>optional: Ersatzspieler</li>
       </ul>
       <div class="aktionen">
         <a class="btn" id="mailBtn" href="mailto:turnierleitung@tcvahrendorf.de">✉ Anmeldemail öffnen</a>
@@ -194,9 +194,9 @@
 
   <!-- ================= PHASE SPIELBETRIEB ================= -->
   <section id="sec-tabelle" hidden>
-    <h2>Tabelle</h2>
+    <h2 id="tabelleTitel">Tabelle</h2>
     <div class="tabelle-scroll"><table id="tabelle"></table></div>
-    <p class="hinweis">Reihenfolge: Siege · bei Gleichstand ausgespielte Siege vor Siegen nach Zeitwertung · Spieldifferenz.</p>
+    <p class="hinweis" id="tabelleHinweis">Reihenfolge: Siege · bei Gleichstand ausgespielte Siege vor Siegen nach Zeitwertung · Spieldifferenz.</p>
   </section>
 
   <section id="sec-spielplan" hidden>
@@ -228,7 +228,8 @@
       <li>Bei Zeitablauf gewinnt, wer mehr Sätze hat, dann wer mehr Spiele hat (inkl. angefangenem Satz), sonst entscheidet ein letzter Punkt. Es wird nicht nachgespielt.</li>
       <li>Das Heimteam schlägt spätestens 5 Tage vor Beginn des Spieltags mindestens 2 Termine vor, das Gastteam antwortet binnen 3 Tagen.</li>
       <li>Absagen spätestens einen Tag vorher. Bei kurzfristigerer Absage erstattet der Gast die Hallenkosten.</li>
-      <li>Ersatzspieler: TCV-Mitglied und nicht wesentlich stärker als der vertretene Partner.</li>
+      <li>In jedem Spiel steht pro Team mindestens ein TCV-Mitglied auf dem Platz.</li>
+      <li>Ersatzspieler: nicht wesentlich stärker als der vertretene Partner, auch von außerhalb (siehe oben).</li>
       <li>Termine und Ergebnisse meldet ihr per Mail oder in die Turnier-WhatsApp-Gruppe (wird nach Anmeldeschluss bekanntgegeben).</li>
     </ul>
     <div class="aktionen" style="margin-top:16px">
@@ -251,7 +252,7 @@
 // DATENSCHUTZ: nur Teamnamen, Spielernamen, Termine (Datum/Uhrzeit/Halle) und Ergebnisse. NIE Kontaktdaten, LKs, Vermerke.
 // Quelle nur "03 Spielbetrieb\*".
 window.TURNIERDATEN = {
-  stand: "2026-11-02 12:00",
+  stand: "2026-11-02 18:30",
 
   // "anmeldung" | "auslosung" (Anmeldeschluss vorbei, Spielplan in Arbeit) | "spielbetrieb" | "beendet"
   phase: "anmeldung",
@@ -261,17 +262,24 @@ window.TURNIERDATEN = {
   spielende: "2027-03-31",
 
   // Roter Hinweisbalken oben (leer = ausgeblendet)
-  news: "Neu seit 02.11.: Es reicht, wenn eine/r von euch beiden TCV-Mitglied ist. Ihr könnt also auch mit einem Partner oder einer Partnerin von außerhalb spielen.",
+  news: "Neu seit 02.11.: Wichtig ist nur, dass in jedem Spiel pro Team mindestens ein TCV-Mitglied auf dem Platz steht. Partner, Partnerin und Ersatzspieler dürfen also auch von außerhalb kommen.",
 
-  // Anzahl angemeldeter Teams (0 = nicht anzeigen). Nur die Zahl, keine Namen vor dem Spielplan.
+  // Anzahl angemeldeter Teams, nur falls "teams" leer ist (0 = nicht anzeigen). Sonst zählt "teams".
   teamsAngemeldet: 0,
 
-  // --- ab Phase "spielbetrieb" (noch leer) ---
-  // teams:       [{ nr: 1, name: "Muster/Beispiel" }]
+  // Teams (Quelle: 03 Spielbetrieb\Tabelle.md). Schon in der Anmeldephase sichtbar als vorläufige Tabelle.
+  // teams:       [{ nr: 1, name: "Muster / Beispiel", spieler: "Max Muster, Erika Beispiel" }]
+  // --- ab Phase "spielbetrieb" ---
   // spieltage:   [{ nr: 1, von: "2026-11-16", bis: "2026-11-29" }]
   // begegnungen: [{ spieltag: 1, heim: 1, gast: 2, termin: "2026-11-20 19:00", halle: "Tennishalle X",
   //                 ergebnis: "6:4 3:6 5:3", sieger: 1, zeitwertung: true }]
-  teams: [],
+  teams: [
+    { nr: 1, name: "Herbig / Piekert",            spieler: "Steffen Herbig, Andreas Piekert" },
+    { nr: 2, name: "Krones-Nendza / Thiele-Hanl", spieler: "Elena Krones-Nendza, Annika Thiele-Hanl" },
+    { nr: 3, name: "Sackmann / Michaelis",        spieler: "Uwe Sackmann, Thorsten Michaelis" },
+    { nr: 4, name: "Grunenberg / Michaelis",      spieler: "Oliver Grunenberg, Jörn Michaelis" },
+    { nr: 5, name: "Kittel / Tiedgen",            spieler: "Marc-Philipp Kittel, Tobias Tiedgen" }
+  ],
   spieltage: [],
   begegnungen: []
 };
@@ -317,8 +325,9 @@ window.TURNIERDATEN = {
     cd.textContent = tage === 0 ? "heute letzter Tag!" : tage === 1 ? "noch 1 Tag" : "noch " + tage + " Tage";
     cd.hidden = false;
   }
-  if (anmeldungOffen && D.teamsAngemeldet > 0) {
-    $("teamZahl").textContent = "Bisher angemeldet: " + D.teamsAngemeldet + (D.teamsAngemeldet === 1 ? " Team" : " Teams");
+  var anzahl = (D.teams || []).length || D.teamsAngemeldet || 0;
+  if (anmeldungOffen && anzahl > 0) {
+    $("teamZahl").innerHTML = "Bisher angemeldet: " + anzahl + (anzahl === 1 ? " Team" : " Teams") + " · <a href='#sec-tabelle'>wer ist dabei?</a>";
     $("teamZahl").hidden = false;
   }
 
@@ -341,9 +350,11 @@ window.TURNIERDATEN = {
     if (heute() <= datum(rows[i].getAttribute("data-bis"))) { rows[i].className = "jetzt"; break; }
   }
 
-  // ---------- Phase Spielbetrieb: Tabelle + Spielplan ----------
-  if ((phase === "spielbetrieb" || phase === "beendet") && (D.teams || []).length) {
-    var teamName = {}; D.teams.forEach(function (t) { teamName[t.nr] = t.name; });
+  // ---------- Tabelle (vor dem Spielbetrieb als vorläufige Tabelle der angemeldeten Teams) ----------
+  var spielbetrieb = phase === "spielbetrieb" || phase === "beendet";
+  if ((D.teams || []).length) {
+    var teamName = {}, teamSpieler = {};
+    D.teams.forEach(function (t) { teamName[t.nr] = t.name; teamSpieler[t.nr] = t.spieler; });
     var st = {};
     D.teams.forEach(function (t) { st[t.nr] = { nr: t.nr, sp: 0, s: 0, n: 0, sv: 0, gp: 0, gm: 0 }; });
     (D.begegnungen || []).forEach(function (b) {
@@ -361,11 +372,20 @@ window.TURNIERDATEN = {
     var html = "<thead><tr><th>#</th><th>Team</th><th class='num'>Sp.</th><th class='num'>S</th><th class='num'>N</th><th class='num'>Spiele</th><th class='num'>Diff.</th></tr></thead><tbody>";
     liste.forEach(function (r, i) {
       var diff = r.gp - r.gm;
-      html += "<tr" + (i === 0 && r.sp ? " class='spitze'" : "") + "><td>" + (i + 1) + "</td><td>" + esc(teamName[r.nr]) + "</td><td class='num'>" + r.sp + "</td><td class='num'>" + r.s +
+      var spieler = teamSpieler[r.nr] ? "<br><span class='hinweis'>" + esc(teamSpieler[r.nr]) + "</span>" : "";
+      html += "<tr" + (i === 0 && r.sp ? " class='spitze'" : "") + "><td>" + (i + 1) + "</td><td>" + esc(teamName[r.nr]) + spieler + "</td><td class='num'>" + r.sp + "</td><td class='num'>" + r.s +
         "</td><td class='num'>" + r.n + "</td><td class='num'>" + r.gp + ":" + r.gm + "</td><td class='num'>" + (diff > 0 ? "+" : "") + diff + "</td></tr>";
     });
     $("tabelle").innerHTML = html + "</tbody>";
     $("sec-tabelle").hidden = false;
+    if (!spielbetrieb) {
+      $("tabelleTitel").textContent = "Angemeldete Teams";
+      $("tabelleHinweis").textContent = "Vorläufige Tabelle in der Reihenfolge der Anmeldung. Den Modus legen wir nach Anmeldeschluss passend zur Teamzahl fest.";
+    }
+  }
+
+  // ---------- Phase Spielbetrieb: Spielplan ----------
+  if (spielbetrieb && (D.teams || []).length) {
 
     var sp = "";
     (D.spieltage || []).forEach(function (t) {
