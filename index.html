@@ -111,6 +111,9 @@
 
   /* Spielplan (Phase Spielbetrieb) */
   .spieltag h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; margin: 22px 0 8px; }
+  .phase-titel { font-size: 1.05rem; margin: 30px 0 4px; padding: 8px 12px; background: var(--yellow-soft); border-left: 5px solid var(--yellow); }
+  .phase-titel:first-child { margin-top: 0; }
+  .gruppe { display: inline-block; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-right: 6px; }
   .spieltag h3 .zr { color: var(--muted); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 0.9rem; margin-left: 8px; }
   .badge { display: inline-block; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 8px; white-space: nowrap; }
   .badge.offen { background: var(--surface2); color: var(--muted); }
@@ -150,7 +153,7 @@
     <div class="eckdaten">
       <div class="k">Wer</div><div class="v">Feste Doppel. Wichtig ist nur: <strong>In jedem Spiel steht pro Team mindestens ein TCV-Mitglied auf dem Platz</strong> <span class="hinweis">(geändert am 02.11.)</span>. Partner, Partnerin und Ersatzspieler dürfen also auch von außerhalb kommen. Alle spielen in einer <strong>offenen Klasse</strong>: Herren-, Damen- und Mixed-Doppel spielen gemeinsam.</div>
       <div class="k">Wann</div><div class="v">Mitte November 2026 bis 4. April 2027, in Spieltagen mit festen Zeiträumen</div>
-      <div class="k">Umfang</div><div class="v">Rund <strong>8 Begegnungen pro Team</strong> (6–10). Den Modus legen wir nach Anmeldeschluss passend zur Teamzahl fest.</div>
+      <div class="k">Umfang</div><div class="v"><strong>8 Begegnungen pro Team</strong>, davon 4 zu Hause und 4 auswärts. Spieltag 1–5: jeder gegen jeden. Spieltag 6–8: Die Plätze 1–3 spielen in der Top-Gruppe, die Plätze 4–6 in der Mittelgruppe jeder gegen jeden. Dazu kommt pro Team ein Kreuzspiel (1–4, 2–5, 3–6). Gewertet wird in einer Gesamttabelle über alle 8 Begegnungen.</div>
       <div class="k">Spielzeit</div><div class="v">2 Stunden pro Begegnung, die voll ausgespielt werden. Gewertet wird der Stand bei Zeitablauf.</div>
       <div class="k">Heim &amp; Gast</div><div class="v">Das Heimteam bucht eine Halle seiner Wahl, stellt die Bälle und zahlt beides. Jedes Team hat gleich oft Heim- und Gastrecht.</div>
       <div class="k">Turnierleitung</div><div class="v">Tobias Tiedgen &amp; Thorsten Michaelis · <a href="mailto:turnierleitung@tcvahrendorf.de">turnierleitung@tcvahrendorf.de</a></div>
@@ -196,7 +199,7 @@
   <section id="sec-tabelle" hidden>
     <h2 id="tabelleTitel">Tabelle</h2>
     <div class="tabelle-scroll"><table id="tabelle"></table></div>
-    <p class="hinweis" id="tabelleHinweis">Reihenfolge: Siege · bei Gleichstand ausgespielte Siege vor Siegen nach Zeitwertung · Spieldifferenz.</p>
+    <p class="hinweis" id="tabelleHinweis">Reihenfolge: Siege · bei Gleichstand ausgespielte Siege vor Siegen nach Zeitwertung · Spieldifferenz · direkter Vergleich. Nach dem 5. Spieltag entscheidet diese Tabelle über Top- und Mittelgruppe.</p>
   </section>
 
   <section id="sec-spielplan" hidden>
@@ -226,7 +229,7 @@
     <ul class="regeln">
       <li>Spielzeit 2 Stunden, max. 10 Minuten Einspielen. Bitte zügig spielen, Seitenwechsel max. 90 Sekunden.</li>
       <li>Bei Zeitablauf gewinnt, wer mehr Sätze hat, dann wer mehr Spiele hat (inkl. angefangenem Satz), sonst entscheidet ein letzter Punkt. Es wird nicht nachgespielt.</li>
-      <li>Das Heimteam schlägt spätestens 5 Tage vor Beginn des Spieltags mindestens 2 Termine vor, das Gastteam antwortet binnen 3 Tagen.</li>
+      <li>Das Heimteam schlägt spätestens 5 Tage vor Beginn des Spieltags mindestens 2 Termine vor, das Gastteam antwortet binnen 3 Tagen. Beim 1. und 6. Spieltag gilt: innerhalb von 3 Tagen, nachdem die Turnierleitung die Paarungen bekanntgegeben hat.</li>
       <li>Absagen spätestens einen Tag vorher. Bei kurzfristigerer Absage erstattet der Gast die Hallenkosten.</li>
       <li>In jedem Spiel steht pro Team mindestens ein TCV-Mitglied auf dem Platz.</li>
       <li>Ersatzspieler: nicht wesentlich stärker als der vertretene Partner, auch von außerhalb (siehe oben).</li>
@@ -252,17 +255,17 @@
 // DATENSCHUTZ: nur Teamnamen, Spielernamen, Termine (Datum/Uhrzeit/Halle) und Ergebnisse. NIE Kontaktdaten, LKs, Vermerke.
 // Quelle nur "03 Spielbetrieb\*".
 window.TURNIERDATEN = {
-  stand: "2026-11-05 12:00",
+  stand: "2026-11-09 18:00",
 
   // "anmeldung" | "auslosung" (Anmeldeschluss vorbei, Spielplan in Arbeit) | "spielbetrieb" | "beendet"
-  phase: "anmeldung",
+  phase: "spielbetrieb",
 
   anmeldeschluss: "2026-11-08",      // letzter Tag der Anmeldung (inklusive)
-  spielbeginn: "2026-11-16",
-  spielende: "2027-03-31",
+  spielbeginn: "2026-11-14",
+  spielende: "2027-04-04",
 
   // Roter Hinweisbalken oben (leer = ausgeblendet)
-  news: "Neu seit 02.11.: Wichtig ist nur, dass in jedem Spiel pro Team mindestens ein TCV-Mitglied auf dem Platz steht. Partner, Partnerin und Ersatzspieler dürfen also auch von außerhalb kommen.",
+  news: "Der Spielplan steht! Der 1. Spieltag läuft vom 14. bis 29.11. Heimteams: Bitte schlagt euren Gegnern innerhalb von 3 Tagen nach unserer Mail 2 Termine vor.",
 
   // Anzahl angemeldeter Teams, nur falls "teams" leer ist (0 = nicht anzeigen). Sonst zählt "teams".
   teamsAngemeldet: 0,
@@ -273,9 +276,11 @@ window.TURNIERDATEN = {
   // Teams (Quelle: 03 Spielbetrieb\Tabelle.md). Schon in der Anmeldephase sichtbar als vorläufige Tabelle.
   // teams:       [{ nr: 1, name: "Muster / Beispiel", spieler: "Max Muster, Erika Beispiel" }]
   // --- ab Phase "spielbetrieb" ---
-  // spieltage:   [{ nr: 1, von: "2026-11-16", bis: "2026-11-29" }]
+  // spieltage:   [{ nr: 1, von: "2026-11-16", bis: "2026-11-29", phase: "Überschrift (optional, vor dem ersten Spieltag einer Phase)" }]
   // begegnungen: [{ spieltag: 1, heim: 1, gast: 2, termin: "2026-11-20 19:00", halle: "Tennishalle X",
   //                 ergebnis: "6:4 3:6 5:3", sieger: 1, zeitwertung: true }]
+  //   Platzhalter, solange die Teams noch nicht feststehen (Phase 2): { spieltag: 6, gruppe: "Top", paarung: "Platz 2 – Platz 3" }
+  //   Sobald die Paarungen feststehen: paarung/gruppe stehen lassen (gruppe wird angezeigt) und heim/gast ergänzen.
   teams: [
     { nr: 1, name: "Herbig / Piekert",            spieler: "Steffen Herbig, Andreas Piekert" },
     { nr: 2, name: "Krones-Nendza / Thiele-Hanl", spieler: "Elena Krones-Nendza, Annika Thiele-Hanl" },
@@ -284,8 +289,43 @@ window.TURNIERDATEN = {
     { nr: 5, name: "Kittel / Tiedgen",            spieler: "Marc-Philipp Kittel, Tobias Tiedgen" },
     { nr: 6, name: "Kittel / Kittel",             spieler: "Jessica Kittel, Lieselotte Kittel" }
   ],
-  spieltage: [],
-  begegnungen: []
+  // Quelle: 03 Spielbetrieb\Spielplan.md + Modus.md
+  spieltage: [
+    { nr: 1, von: "2026-11-14", bis: "2026-11-29", phase: "Phase 1: Jeder gegen jeden" },
+    { nr: 2, von: "2026-11-30", bis: "2026-12-20" },
+    { nr: 3, von: "2026-12-21", bis: "2027-01-17" },
+    { nr: 4, von: "2027-01-18", bis: "2027-01-31" },
+    { nr: 5, von: "2027-02-01", bis: "2027-02-14" },
+    { nr: 6, von: "2027-02-15", bis: "2027-02-28", phase: "Phase 2: Top-Gruppe (Plätze 1–3) und Mittelgruppe (Plätze 4–6)" },
+    { nr: 7, von: "2027-03-01", bis: "2027-03-14" },
+    { nr: 8, von: "2027-03-15", bis: "2027-04-04" }
+  ],
+  begegnungen: [
+    { spieltag: 1, heim: 5, gast: 2 },
+    { spieltag: 1, heim: 6, gast: 4 },
+    { spieltag: 1, heim: 3, gast: 1 },
+    { spieltag: 2, heim: 4, gast: 5 },
+    { spieltag: 2, heim: 1, gast: 2 },
+    { spieltag: 2, heim: 3, gast: 6 },
+    { spieltag: 3, heim: 1, gast: 5 },
+    { spieltag: 3, heim: 4, gast: 3 },
+    { spieltag: 3, heim: 2, gast: 6 },
+    { spieltag: 4, heim: 3, gast: 5 },
+    { spieltag: 4, heim: 6, gast: 1 },
+    { spieltag: 4, heim: 2, gast: 4 },
+    { spieltag: 5, heim: 5, gast: 6 },
+    { spieltag: 5, heim: 2, gast: 3 },
+    { spieltag: 5, heim: 1, gast: 4 },
+    { spieltag: 6, gruppe: "Top",   paarung: "Platz 2 – Platz 3" },
+    { spieltag: 6, gruppe: "Mitte", paarung: "Platz 5 – Platz 6" },
+    { spieltag: 6, gruppe: "Kreuz", paarung: "Platz 1 – Platz 4" },
+    { spieltag: 7, gruppe: "Top",   paarung: "Platz 1 – Platz 3" },
+    { spieltag: 7, gruppe: "Mitte", paarung: "Platz 4 – Platz 6" },
+    { spieltag: 7, gruppe: "Kreuz", paarung: "Platz 2 – Platz 5" },
+    { spieltag: 8, gruppe: "Top",   paarung: "Platz 1 – Platz 2" },
+    { spieltag: 8, gruppe: "Mitte", paarung: "Platz 4 – Platz 5" },
+    { spieltag: 8, gruppe: "Kreuz", paarung: "Platz 3 – Platz 6" }
+  ]
 };
 </script>
 <!-- TURNIERDATEN:END -->
@@ -374,15 +414,19 @@ window.TURNIERDATEN = {
     var liste = Object.keys(st).map(function (k) { return st[k]; }).sort(function (a, b) {
       return b.s - a.s || b.sv - a.sv || (b.gp - b.gm) - (a.gp - a.gm) || String(teamName[a.nr]).localeCompare(String(teamName[b.nr]), "de");
     });
+    var hatErgebnisse = liste.some(function (r) { return r.sp > 0; });
     var html = "<thead><tr><th>#</th><th>Team</th><th class='num'>Sp.</th><th class='num'>S</th><th class='num'>N</th><th class='num'>Spiele</th><th class='num'>Diff.</th></tr></thead><tbody>";
     liste.forEach(function (r, i) {
       var diff = r.gp - r.gm;
       var spieler = teamSpieler[r.nr] ? "<br><span class='hinweis'>" + esc(teamSpieler[r.nr]) + "</span>" : "";
-      html += "<tr" + (i === 0 && r.sp ? " class='spitze'" : "") + "><td>" + (spielbetrieb ? i + 1 : "") + "</td><td>" + esc(teamName[r.nr]) + spieler + "</td><td class='num'>" + r.sp + "</td><td class='num'>" + r.s +
+      html += "<tr" + (i === 0 && r.sp ? " class='spitze'" : "") + "><td>" + (spielbetrieb && hatErgebnisse ? i + 1 : "") + "</td><td>" + esc(teamName[r.nr]) + spieler + "</td><td class='num'>" + r.sp + "</td><td class='num'>" + r.s +
         "</td><td class='num'>" + r.n + "</td><td class='num'>" + r.gp + ":" + r.gm + "</td><td class='num'>" + (diff > 0 ? "+" : "") + diff + "</td></tr>";
     });
     $("tabelle").innerHTML = html + "</tbody>";
     $("sec-tabelle").hidden = false;
+    if (spielbetrieb && !hatErgebnisse) {
+      $("tabelleHinweis").textContent = "Noch keine Ergebnisse, deshalb alphabetisch sortiert. " + $("tabelleHinweis").textContent;
+    }
     if (!spielbetrieb) {
       $("tabelleTitel").textContent = "Angemeldete Teams" + (anmStand ? " (Stand " + anmStand + ")" : "");
       $("tabelleHinweis").textContent = "Vorläufige Tabelle, alphabetisch sortiert. Den Modus legen wir nach Anmeldeschluss passend zur Teamzahl fest.";
@@ -393,13 +437,20 @@ window.TURNIERDATEN = {
   if (spielbetrieb && (D.teams || []).length) {
 
     var sp = "";
+    var gruppenName = { Top: "Top-Gruppe", Mitte: "Mittelgruppe", Kreuz: "Kreuzspiel" };
     (D.spieltage || []).forEach(function (t) {
+      if (t.phase) sp += "<h3 class='phase-titel'>" + esc(t.phase) + "</h3>";
       sp += "<div class='spieltag'><h3>" + t.nr + ". Spieltag<span class='zr'>" + fmt(t.von) + " – " + fmt(t.bis) + "</span></h3><div class='tabelle-scroll'><table><thead><tr><th>Heim</th><th>Gast</th><th>Termin / Halle</th><th>Ergebnis</th></tr></thead><tbody>";
       (D.begegnungen || []).filter(function (b) { return b.spieltag === t.nr; }).forEach(function (b) {
+        var grp = b.gruppe ? "<span class='gruppe'>" + esc(gruppenName[b.gruppe] || b.gruppe) + "</span><br>" : "";
+        if (!b.heim || !b.gast) {
+          sp += "<tr><td colspan='2'>" + grp + esc(b.paarung || "") + "</td><td colspan='2'><span class='hinweis'>steht nach dem 5. Spieltag fest</span></td></tr>";
+          return;
+        }
         var status = b.ergebnis ? "<span class='badge fertig'>gespielt</span>" : b.termin ? "<span class='badge termin'>Termin steht</span>" : "<span class='badge offen'>offen</span>";
         var ort = b.termin ? fmt(b.termin) + (b.halle ? "<br><span class='hinweis'>" + esc(b.halle) + "</span>" : "") : status;
         var erg = b.ergebnis ? esc(b.ergebnis) + (b.zeitwertung ? " <span class='hinweis'>(Zeit)</span>" : "") : (b.termin ? status : "");
-        sp += "<tr><td class='heim'>" + esc(teamName[b.heim]) + "</td><td>" + esc(teamName[b.gast]) + "</td><td>" + ort + "</td><td>" + erg + "</td></tr>";
+        sp += "<tr><td class='heim'>" + grp + esc(teamName[b.heim]) + "</td><td>" + esc(teamName[b.gast]) + "</td><td>" + ort + "</td><td>" + erg + "</td></tr>";
       });
       sp += "</tbody></table></div></div>";
     });
